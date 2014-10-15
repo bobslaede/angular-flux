@@ -57,7 +57,8 @@ export default angular.module('movies.store', [
 
     var delMovie = function (movie) {
       store.movieItems = store.movieItems
-        .filter(m => m.id !== movie.id);
+        .filter(m => m.id !== movie.id)
+        .toVector();
       store.$emit('change');
     };
 
