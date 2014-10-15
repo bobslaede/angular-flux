@@ -17,9 +17,9 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="movie in movies.movieItems track by movie.id">
-      <td ng-if="!editing">{{movie.title}}</td>
-      <td ng-if="!editing">{{movie.year}}</td>
+    <tr im-repeat="movie in movies.movieItems">
+      <td ng-if="!editing">{{movie.get('title')}}</td>
+      <td ng-if="!editing">{{movie.get('year')}}</td>
       <td ng-if="editing"><input type="text" ng-model="movie.title"/></td>
       <td ng-if="editing"><input type="number" ng-model="movie.year"/></td>
       <td>
@@ -52,9 +52,9 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="movie in movies.movieItems track by movie.id">
-      <td ng-if="!editing">{{movie.title}}</td>
-      <td ng-if="!editing">{{movie.year}}</td>
+    <tr im-repeat="movie in movies.movieItems">
+      <td ng-if="!editing">{{movie.get('title')}}</td>
+      <td ng-if="!editing">{{movie.get('year')}}</td>
       <td ng-if="editing"><input type="text" ng-model="movie.title"/></td>
       <td ng-if="editing"><input type="number" ng-model="movie.year"/></td>
       <td>
@@ -79,7 +79,7 @@
 <script src="bower_components/traceur-runtime/traceur-runtime.js"></script>
 <script src="bower_components/es6-module-loader/dist/es6-module-loader.js"></script>
 <script src="bower_components/system.js/dist/system.js"></script>
-<script src="bower_components/immutable/dist/Immutable.js"></script>
+<script src="lib/Immutable.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script>
   System.import('tmp/js/index')

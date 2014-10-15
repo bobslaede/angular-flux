@@ -43,6 +43,7 @@ export default angular.module('movies.store', [
         obj[id] = movie;
         var map = Immutable.fromJS(obj);
         store.movieItems = store.movieItems.merge(map);
+        store.movieItems[store.movieItems.length - 1] = true;
         store.$emit('change');
       }
     };
@@ -62,7 +63,7 @@ export default angular.module('movies.store', [
         store.movieItems = store.movieItems
           .updateIn([movie.id.toString()], m => {
             console.log(m);
-            return movie;
+            return Immutable.fromJS(movie);
           });
         store.$emit('change');
       }

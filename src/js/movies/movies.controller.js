@@ -5,12 +5,16 @@ import actions from './movies.actions';
 
 class MoviesCtrl {
   constructor (moviesStore, movieActions) {
-    this.movieItems = moviesStore.movieItems.toJS();
+    this.movieItems = moviesStore.movieItems;
     this.movieActions = movieActions;
 
     moviesStore.$on('change', () => {
-      this.movieItems = moviesStore.movieItems.toJS();
+      this.movieItems = moviesStore.movieItems;
     })
+  }
+
+  getId(index) {
+    return index;
   }
 
   addMovie(movie) {

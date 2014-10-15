@@ -1,7 +1,7 @@
 "use strict";
 
 var gulp = require('gulp');
-var traceur = require('gulp-traceur');
+var traceur = require('./tasks/traceur');
 var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('build:dev:js', function () {
