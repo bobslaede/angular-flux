@@ -18,9 +18,59 @@
     </thead>
     <tbody>
     <tr ng-repeat="movie in movies.movieItems track by movie.id">
-      <td>{{movie.title}}</td>
-      <td>{{movie.year}}</td>
-      <td><button type="button" ng-click="movies.delMovie(movie)">&times;</button></td>
+      <td ng-if="!editing">{{movie.title}}</td>
+      <td ng-if="!editing">{{movie.year}}</td>
+      <td ng-if="editing"><input type="text" ng-model="movie.title"/></td>
+      <td ng-if="editing"><input type="number" ng-model="movie.year"/></td>
+      <td>
+        <button type="button"
+                ng-hide="editing"
+                ng-click="editing = !editing">&#x270e;</button>
+        <button type="button"
+                ng-show="editing"
+                ng-click="movies.updateMovie(movie); editing = !editing">gem</button>
+        <button type="button"
+                ng-show="editing"
+                ng-click="movies.delMovie(movie)">del</button>
+        <button type="button"
+                ng-show="editing"
+                ng-click="editing = !editing">&times;</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div ng-controller="MoviesCtrl as movies">
+
+  <table>
+    <thead>
+    <tr>
+      <td><input type="text" ng-model="movieToAdd.title"/></td>
+      <td><input type="number" ng-model="movieToAdd.year"/></td>
+      <td><button type="button" ng-click="movies.addMovie(movieToAdd); movieToAdd = {}">add</button></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="movie in movies.movieItems track by movie.id">
+      <td ng-if="!editing">{{movie.title}}</td>
+      <td ng-if="!editing">{{movie.year}}</td>
+      <td ng-if="editing"><input type="text" ng-model="movie.title"/></td>
+      <td ng-if="editing"><input type="number" ng-model="movie.year"/></td>
+      <td>
+        <button type="button"
+                ng-hide="editing"
+                ng-click="editing = !editing">&#x270e;</button>
+        <button type="button"
+                ng-show="editing"
+                ng-click="movies.updateMovie(movie); editing = !editing">gem</button>
+        <button type="button"
+                ng-show="editing"
+                ng-click="movies.delMovie(movie)">del</button>
+        <button type="button"
+                ng-show="editing"
+                ng-click="editing = !editing">&times;</button>
+      </td>
     </tr>
     </tbody>
   </table>

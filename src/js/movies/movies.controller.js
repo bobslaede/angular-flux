@@ -20,6 +20,10 @@ class MoviesCtrl {
   delMovie(movie) {
     this.movieActions.delMovie(movie);
   }
+
+  updateMovie(movie) {
+    this.movieActions.updateMovie(movie);
+  }
 }
 
 export default angular.module('movies.controller', [store.name, actions.name])

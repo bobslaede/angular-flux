@@ -17,7 +17,7 @@
   "dependencies": {
     "angular": "master",
     "bootstrap": "~3.2.0",
-    "immutable": "~2.0.17",
+    "immutable": "facebook/immutable-js#master",
     "traceur-runtime": "~0.0.66",
     "traceur": "~0.0.66",
     "system.js": "~0.9.1",

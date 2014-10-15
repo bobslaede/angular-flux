@@ -5,6 +5,7 @@ import dispatcher from '../dispatcher';
 export default angular.module('movies.actions', [dispatcher.name])
   .constant('ACTIONS', {
     ADD_MOVIE: 'ADD_MOVIE',
+    UPDATE_MOVIE: 'UPDATE_MOVIE',
     DEL_MOVIE: 'DEL_MOVIE'
   })
   .service('movieActions', function (dispatcher, ACTIONS) {
@@ -14,6 +15,9 @@ export default angular.module('movies.actions', [dispatcher.name])
       },
       delMovie(movie) {
         dispatcher.$emit(ACTIONS.DEL_MOVIE, movie);
+      },
+      updateMovie(movie) {
+        dispatcher.$emit(ACTIONS.UPDATE_MOVIE, movie);
       }
     }
   });
