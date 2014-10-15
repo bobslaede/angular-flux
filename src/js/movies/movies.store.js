@@ -2,6 +2,7 @@
 
 import actions from './movies.actions';
 import dispatcher from '../dispatcher';
+import Immutable from '../Immutable';
 
 var validMovie = function (movie) {
   let errs = 0;
@@ -34,25 +35,30 @@ var _createItem = function (title, year) {
 };
 
 export default angular.module('movies.store', [
-    actions.name,
-    dispatcher.name
-  ])
-  .service('moviesStore', function (ACTIONS, dispatcher) {
-    var movieItems = [
+  actions.name,
+  dispatcher.name,
+  Immutable.name
+])
+  .service('moviesStore', function (ACTIONS, dispatcher, Immutable, $rootScope) {
+
+    var store = $rootScope.$new();
+    store.movieItems = Immutable.Vector(
       _createItem('First blood', 1982),
-      _createItem('Rambo: First blood II', 1985),
-    ];
+      _createItem('Rambo: First blood II', 1985)
+    );
 
     var addMovie = function (movie) {
       if (validMovie(movie)) {
         movie.id = getId();
-        movieItems.push(movie);
+        store.movieItems = store.movieItems.push(movie);
+        store.$emit('change');
       }
     };
 
     var delMovie = function (movie) {
-      var i = movieItems.indexOf(movie);
-      movieItems.splice(i, 1);
+      store.movieItems = store.movieItems
+        .filter(m => m.id !== movie.id);
+      store.$emit('change');
     };
 
     dispatcher.$on(ACTIONS.ADD_MOVIE, (_, d) => {
@@ -63,7 +69,5 @@ export default angular.module('movies.store', [
       delMovie(d);
     });
 
-    return {
-      movieItems
-    }
+    return store;
   })
