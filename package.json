@@ -1,0 +1,26 @@
+{
+  "name": "angular-immutable",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "UNLICENSE",
+  "devDependencies": {
+    "browserify": "^5.12.1",
+    "es6ify": "^1.4.0",
+    "gulp": "^3.8.8",
+    "gulp-browserify": "^0.5.0",
+    "gulp-concat": "^2.4.1",
+    "gulp-derequire": "^2.0.0",
+    "gulp-ng-annotate": "^0.3.3",
+    "gulp-rename": "^1.2.0",
+    "gulp-sourcemaps": "^1.2.2",
+    "gulp-traceur": "^0.13.0",
+    "gulp-uglify": "^1.0.1",
+    "gulp-watch": "^1.0.7",
+    "vinyl-source-stream": "^1.0.0"
+  }
+}
