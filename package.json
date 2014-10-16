@@ -27,5 +27,8 @@
     "traceur": "0.0.67",
     "vinyl-source-stream": "^1.0.0",
     "vinyl-sourcemaps-apply": "^0.1.4"
+  },
+  "dependencies": {
+    "swarm": "^0.3.11"
   }
 }

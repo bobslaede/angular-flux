@@ -13,11 +13,10 @@ export default angular.module('im.path', [])
         }
 
         var expr = $parse(attrs.imOnEdit);
-        console.log(expr());
 
         return function (scope, element, attrs, ngModel) {
 
-          ngModel.$parsers.push(function(value) {
+          ngModel.$parsers.push(function (value) {
             if (ngModel.$isEmpty(value))      return null;
             var model = ngModel.$modelValue
               .update(path, () => value);
