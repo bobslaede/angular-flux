@@ -9,10 +9,6 @@ var createMap = function() {
   return Object.create(null);
 }
 
-var isArrayLike = function () {
-  return true;
-}
-
 var jqLite = angular.element;
 var forEach = angular.forEach;
 var toJson = angular.toJson;
@@ -93,6 +89,11 @@ var imRepeatDirective = ['$parse', '$animate', function ($parse, $animate) {
         throw imRepeatMinErr('iidexp', "'_item_' in '_item_ in _collection_' should be an identifier or '(_key_, _value_)' expression, but got '{0}'.",
           lhs);
       }
+
+      if (!trackByExp) {
+        throw imRepeatMinErr('Need track by expression');
+      }
+
       var valueIdentifier = match[3] || match[1];
       var keyIdentifier = match[2];
 
@@ -105,20 +106,7 @@ var imRepeatDirective = ['$parse', '$animate', function ($parse, $animate) {
       var trackByExpGetter, trackByIdExpFn, trackByIdArrayFn, trackByIdObjFn, trackByImmFn;
       var hashFnLocals = {$id: hashKey};
 
-      if (trackByExp) {
-        trackByExpGetter = $parse(trackByExp);
-      } else {
-        trackByIdArrayFn = function (key, value) {
-          return hashKey(value);
-        };
-        trackByIdObjFn = function (key) {
-          return key;
-        };
-        trackByImmFn = function (key, value) {
-          console.log('track by', key);
-          return key;
-        }
-      }
+      trackByExpGetter = $parse(trackByExp);
 
       return function imRepeatLink($scope, $element, $attr, ctrl, $transclude) {
 
@@ -164,7 +152,7 @@ var imRepeatDirective = ['$parse', '$animate', function ($parse, $animate) {
             $scope[aliasAs] = collection;
           }
 
-          if (collection instanceof Immutable.Map) {
+          if (collection instanceof Immutable.Sequence) {
             var _collection = collection.toJS();
             trackByIdFn = trackByIdExpFn || trackByIdObjFn;
             // if object, extract keys, sort them and use to determine order of iteration over obj props
@@ -175,21 +163,8 @@ var imRepeatDirective = ['$parse', '$animate', function ($parse, $animate) {
               }
             }
             collectionKeys.sort();
-            console.log("KEYS", collectionKeys)
-
-          } else if (isArrayLike(collection)) {
-            collectionKeys = collection;
-            trackByIdFn = trackByIdExpFn || trackByIdArrayFn;
           } else {
-            trackByIdFn = trackByIdExpFn || trackByIdObjFn;
-            // if object, extract keys, sort them and use to determine order of iteration over obj props
-            collectionKeys = [];
-            for (var itemKey in collection) {
-              if (collection.hasOwnProperty(itemKey) && itemKey.charAt(0) != '$') {
-                collectionKeys.push(itemKey);
-              }
-            }
-            collectionKeys.sort();
+            throw new imRepeatMinErr('Need to be an Immutable structure');
           }
 
           collectionLength = collectionKeys.length;

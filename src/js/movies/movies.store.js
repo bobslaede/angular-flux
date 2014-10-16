@@ -59,11 +59,11 @@ export default angular.module('movies.store', [
     };
 
     var updateMovie = function (movie) {
-      if (validMovie(movie)) {
+      if (validMovie(movie.toJS())) {
         store.movieItems = store.movieItems
-          .updateIn([movie.id.toString()], m => {
+          .updateIn(movie.get('id'), m => {
             console.log(m);
-            return Immutable.fromJS(movie);
+            return m.merge(movie);
           });
         store.$emit('change');
       }

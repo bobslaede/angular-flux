@@ -13,10 +13,6 @@ class MoviesCtrl {
     })
   }
 
-  getId(index) {
-    return index;
-  }
-
   addMovie(movie) {
     this.movieActions.addMovie(movie);
   }
