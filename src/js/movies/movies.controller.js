@@ -5,11 +5,11 @@ import actions from './movies.actions';
 
 class MoviesCtrl {
   constructor (moviesStore, movieActions) {
-    this.movieItems = moviesStore.movieItems;
+    this.movieItems = moviesStore.movieItems.toJS();
     this.movieActions = movieActions;
 
     moviesStore.$on('change', () => {
-      this.movieItems = moviesStore.movieItems;
+      this.movieItems = moviesStore.movieItems.toJS();
     })
   }
 
