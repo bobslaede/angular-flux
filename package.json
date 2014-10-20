@@ -33,6 +33,7 @@
     "through": "^2.3.6",
     "through2": "^0.6.3",
     "traceur": "0.0.72",
+    "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0",
     "vinyl-sourcemaps-apply": "^0.1.4"
   },

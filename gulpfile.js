@@ -8,17 +8,33 @@ var through = require('through2');
 var source = require('vinyl-source-stream');
 var traceurify = require('./tasks/traceurify');
 var derequire = require('gulp-derequire');
+var ngAnnotate = require('gulp-ng-annotate');
+var buffer = require('vinyl-buffer');
+var uglify = require('gulp-uglify');
 
 gulp.task('build:prod:js', function () {
-  return browserify({
-    standalone: 'foo'
-  })
+  return browserify()
     .add(traceur.RUNTIME_PATH)
-    .require('./src/js/index.js')
+    .add('./src/js/index.js')
     .transform(traceurify())
     .bundle()
     .pipe(source('index.js'))
-    //.pipe(derequire())
+    .pipe(buffer())
+    .pipe(uglify({
+      compress: {
+        dead_code: true,
+        properties: true,
+        sequences: true,
+        drop_debugger: true,
+        conditionals: true,
+        unused: true,
+        join_vars: true,
+        drop_console: true
+      }
+    }))
+    .pipe(ngAnnotate())
+    
+  //  .pipe(derequire())
     .pipe(gulp.dest('./dist/'))
 })
 
