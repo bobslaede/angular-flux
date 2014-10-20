@@ -30,6 +30,7 @@
     "karma-xml-reporter": "^0.1.4",
     "object-assign": "^1.0.0",
     "requirejs": "^2.1.15",
+    "through": "^2.3.6",
     "through2": "^0.6.3",
     "traceur": "0.0.72",
     "vinyl-source-stream": "^1.0.0",

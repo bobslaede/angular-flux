@@ -1,5 +1,5 @@
 "use strict";
-'use strict';
+
 var gutil = require('gulp-util');
 var through = require('through2');
 var traceur = require('traceur');
@@ -19,8 +19,6 @@ module.exports = function (options) {
       cb(new gutil.PluginError('gulp-traceur', 'Streaming not supported'));
       return;
     }
-
-    var ret;
 
     var fileOptions = objectAssign({}, options);
 
