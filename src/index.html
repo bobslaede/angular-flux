@@ -44,22 +44,19 @@
   </table>
 </div>
 
-<script src="bower_components/angular/angular.min.js"></script>
-<script src="../dist/index.js"></script>
+<script src="bower_components/immutable/dist/Immutable.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/ui-router/release/angular-ui-router.js"></script>
 
-<!--
 <script src="bower_components/traceur/traceur.js"></script>
 <script src="bower_components/es6-module-loader/dist/es6-module-loader.js"></script>
 <script src="bower_components/system.js/dist/system.js"></script>
-<script src="bower_components/immutable/dist/Immutable.js"></script>
 <script src="js/lib/swarm-html5.js"></script>
-<script src="bower_components/angular/angular.js"></script>
 <script>
   System.import('js/index')
-    .then(function (imports) {
-      
+    .catch(function (error) {
+      throw error;
     })
-    .catch(console.error.bind(console));
-</script>-->
+</script>
 </body>
 </html>
