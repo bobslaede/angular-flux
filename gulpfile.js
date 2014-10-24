@@ -33,8 +33,6 @@ gulp.task('build:prod:js', function () {
       }
     }))
     .pipe(ngAnnotate())
-    
-  //  .pipe(derequire())
     .pipe(gulp.dest('./dist/'))
 })
 
