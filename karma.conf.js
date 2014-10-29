@@ -15,7 +15,7 @@ module.exports = function(config) {
     files: [
       'src/bower_components/angular/angular.js',
       'src/bower_components/angular-mocks/angular-mocks.js',
-      {pattern: 'src/bower_components/immutable/dist/Immutable.js', included: false},
+      {pattern: 'src/bower_components/immutable/dist/immutable.js', included: false},
       {pattern: 'src/js/**/*.js', included: false},
       {pattern: 'src/js/**/*.spec.js', included: false},
       'test-main.js'
