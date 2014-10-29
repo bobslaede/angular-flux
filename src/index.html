@@ -6,52 +6,12 @@
 </head>
 <body>
 
-<div ng-controller="MoviesCtrl as movies">
-
-  <table>
-    <thead>
-    <tr>
-      <td><input type="text" ng-model="movieToAdd.title"/></td>
-      <td><input type="number" ng-model="movieToAdd.year"/></td>
-      <td><button type="button" ng-click="movies.addMovie(movieToAdd); movieToAdd = {}">add</button></td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr nb-repeat="movie in movies.movieItems track by movie.id">
-      <td ng-if="!editing" ng-bind="movie.title"></td>
-      <td ng-if="!editing" ng-bind="movie.year"></td>
-      <td ng-if="editing"><input type="text"
-                                 ng-model="movie"
-                                 im-path="title"
-                                 im-on-edit="movies.updateMovie(model)" /></td>
-      <td ng-if="editing"><input type="number"
-                                 ng-model="movie"
-                                 im-path="year"
-                                 im-on-edit="movies.updateMovie(model)" /></td>
-      <td>
-        <button type="button"
-                ng-hide="editing"
-                ng-click="editing = !editing">&#x270e;</button>
-        <button type="button"
-                ng-show="editing"
-                ng-click="movies.delMovie(movie)">del</button>
-        <button type="button"
-                ng-show="editing"
-                ng-click="editing = !editing">tilbage</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-</div>
-
-<script src="bower_components/immutable/dist/Immutable.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/ui-router/release/angular-ui-router.js"></script>
 
 <script src="bower_components/traceur/traceur.js"></script>
 <script src="bower_components/es6-module-loader/dist/es6-module-loader.js"></script>
 <script src="bower_components/system.js/dist/system.js"></script>
-<script src="js/lib/swarm-html5.js"></script>
 <script>
   System.import('js/index')
     .catch(function (error) {

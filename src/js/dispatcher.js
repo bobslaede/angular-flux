@@ -1,6 +1,8 @@
 "use strict";
 
+import Flux from '../bower_components/flux/dist/Flux';
+
 export default angular.module('dispatcher', [])
-  .service('dispatcher', function ($rootScope) {
-    return $rootScope.$new();
+  .factory('Dispatcher', function () {
+    return Flux.Dispatcher;
   })
