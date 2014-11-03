@@ -2,9 +2,7 @@
   movies list
   <ul>
     <li ng-repeat="item in model.list.toArray()">
-      <a ui-sref="^.view({id : item.get('id')})">{{item.get('name')}}</a>
+      <a ui-sref=".view({id : item.get('id')})">{{item.get('name')}}</a>
     </li>
   </ul>
-  <hr>
-  <button ng-click="list.add()">Add</button>
 </div>

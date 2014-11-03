@@ -3,8 +3,15 @@
 import moviesStore from './movies.store';
 
 class ViewCtrl {
-  constructor($scope, moviesStore) {
-    console.log('view ctrl');
+
+  constructor($scope, moviesStore, $state) {
+    this.$scope = $scope;
+    this.store = moviesStore;
+    this.$state = $state;
+
+    this.$scope.model = {};
+
+    this.$scope.model.movie = this.store.getOne(this.$state.params.id);
   }
 
 }

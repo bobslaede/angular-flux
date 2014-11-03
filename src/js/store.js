@@ -14,7 +14,7 @@ export default angular.module('store', [
     class Store {
       constructor() {
         this.$scope = storeScope.$new();
-        this.store = Immutable.Map();
+        this.store = Immutable.Vector();
         console.log('new store', this);
       }
 
@@ -23,11 +23,12 @@ export default angular.module('store', [
       }
 
       emit(...args) {
+        console.log('emit', args[0]);
         this.$scope.$emit(...args);
       }
 
       emitChange() {
-        this.emit(CHANGE_EVENT);
+        this.emit('change');
       }
     }
 

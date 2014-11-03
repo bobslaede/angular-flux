@@ -18,6 +18,7 @@ class ListCtrl {
   }
 
   onChange() {
+    console.log('on change')
     this.$scope.model.list = this.moviesStore.getAll();
   }
 }

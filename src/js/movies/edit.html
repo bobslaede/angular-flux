@@ -1,1 +1,14 @@
 <h1>EDIT! WUU</h1>
+
+
+  <div ng-form="myForm">
+
+    <label>navn
+      <input type="name" ng-model="model.movie.name" ng-model-options="{ getterSetter: true }">
+    </label>
+
+    {{movie.get('name')}}
+
+    <button type="submit" ng-click="editCtrl.save()">Save it</button>
+
+  </div>

@@ -17,28 +17,40 @@ export default angular.module('movies.store', [
         console.log('new moviesstore');
         super();
 
-        this.store = this.store.merge(Immutable.fromJS({'123fsdf-0123-4': {id:'123fsdf-0123-4','name':'baz'}}))
+        this.store = this.store.push(Immutable.fromJS({id:'123fsdf-0123-4','name':'baz'}))
 
-        console.log(this.store.toArray());
       }
 
-      update() {
-        console.log('update');
+      update(movie) {
+        console.log('update', movie.toObject());
+        this.store = this.store
+          .map((i) => {
+            if (i.get('id') === movie.get('id')) {
+              return movie;
+            }
+          });
+        this.emitChange();
       }
 
       getAll() {
         return this.store;
+      }
+
+      getOne(id) {
+        return this.store
+          .toVector()
+          .filter(i => i.get('id') === id)
+          .get(0);
       }
     }
 
     var moviesStore = new MoviesStore();
 
     moviesDispatcher.register(function (payload) {
-      var action = payload.action;
 
-      switch (action.actionType) {
+      switch (payload.actionType) {
         case CONSTS.MOVIES_UPDATE:
-          console.log('update');
+          moviesStore.update(payload.data);
           break;
       }
 

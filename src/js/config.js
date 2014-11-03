@@ -10,39 +10,41 @@ export default angular.module('movies.app.config', [
   .config(function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
-      .state('movies', {
-        url: '/movies',
+      .state('app', {
         abstract: true,
-        template: '<div ui-view>FOO</div>'
+        template: '<div ui-view="list">l</div><hr/><div ui-view="main">m</div>'
       })
-      .state('movies.list', {
-        url: '/list',
+      .state('app.movies', {
+        url: '/movies',
         views: {
-          '@': {
+          'list': {
             templateUrl: 'js/movies/list.html',
             controller: 'MoviesListController'
+          },
+          'main': {
+            template: '<div ui-view="movies">please select</div>'
           }
         }
       })
-      .state('movies.view', {
+      .state('app.movies.view', {
         url: '/:id',
         views: {
-          '@': {
+          'movies': {
             templateUrl: 'js/movies/view.html',
             controller: 'MoviesViewController'
           }
         }
       })
-      .state('movies.view.edit', {
+      .state('app.movies.view.edit', {
         url: '/edit',
         views: {
-          '@': {
+          'movies@app.movies': {
             templateUrl: 'js/movies/edit.html',
-            controller: 'MoviesEditController'
+            controller: 'MoviesEditController as editCtrl'
           }
         }
       })
 
-    $urlRouterProvider.otherwise('/movies/list');
+    $urlRouterProvider.otherwise('/movies');
 
   });
