@@ -44,7 +44,7 @@ gulp.task('build:dev:js', function () {
       modules: 'amd'
     }))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('src/tmp/js'))
+    .pipe(gulp.dest('src/tmp'))
 });
 
 gulp.task('watch', function () {

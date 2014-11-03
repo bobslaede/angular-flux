@@ -1,15 +1,11 @@
 "use strict";
 
-import list from './list/list';
-import edit from './edit/edit';
-import movies from './movies2/movies';
+import movies from './movies/movies';
 import uiRouter from '../bower_components/ui-router/release/angular-ui-router';
 
 export default angular.module('movies.app.config', [
   uiRouter,
-  movies.name,
-  edit.name,
-  list.name
+  movies.name
 ])
   .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -17,17 +13,34 @@ export default angular.module('movies.app.config', [
       .state('movies', {
         url: '/movies',
         abstract: true,
-        template: '<ui-view></ui-view>'
+        template: '<div ui-view>FOO</div>'
       })
       .state('movies.list', {
         url: '/list',
-        templateUrl: 'js/list/list.html',
-        controller: 'ListCtrl'
+        views: {
+          '@': {
+            templateUrl: 'js/movies/list.html',
+            controller: 'MoviesListController'
+          }
+        }
       })
-      .state('movies.edit', {
-        url: '/:id/edit',
-        templateUrl: 'js/edit/edit.html',
-        controller: 'EditCtrl'
+      .state('movies.view', {
+        url: '/:id',
+        views: {
+          '@': {
+            templateUrl: 'js/movies/view.html',
+            controller: 'MoviesViewController'
+          }
+        }
+      })
+      .state('movies.view.edit', {
+        url: '/edit',
+        views: {
+          '@': {
+            templateUrl: 'js/movies/edit.html',
+            controller: 'MoviesEditController'
+          }
+        }
       })
 
     $urlRouterProvider.otherwise('/movies/list');

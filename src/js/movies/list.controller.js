@@ -1,6 +1,6 @@
 "use strict";
 
-import moviesStore from '../movies2/movies.store';
+import moviesStore from './movies.store';
 
 class ListCtrl {
   constructor($scope, moviesStore) {
@@ -22,7 +22,7 @@ class ListCtrl {
   }
 }
 
-export default angular.module('list.ctrl', [
-    moviesStore.name
-  ])
-  .controller('ListCtrl', ListCtrl);
+export default angular.module('movies.list.controller', [
+  moviesStore.name
+])
+  .controller('MoviesListController', ListCtrl);
