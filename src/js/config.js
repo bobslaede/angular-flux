@@ -19,7 +19,7 @@ export default angular.module('movies.app.config', [
         views: {
           'list': {
             templateUrl: 'js/movies/list.html',
-            controller: 'MoviesListController'
+            controller: 'MoviesListController as listCtrl'
           },
           'main': {
             template: '<div ui-view="movies">please select</div>'

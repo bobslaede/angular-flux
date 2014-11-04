@@ -1,8 +1,9 @@
 <div>
   movies list
+  <button type="button" ng-click="listCtrl.create()">create</button>
   <ul>
-    <li ng-repeat="item in model.list.toArray()">
-      <a ui-sref=".view({id : item.get('id')})">{{item.get('name')}}</a>
+    <li ng-repeat="item in model.list.toArray() track by item.get('id')">
+      <a ui-sref=".view({id : item.get('id')})">- {{item.get('name')}}</a>
     </li>
   </ul>
 </div>

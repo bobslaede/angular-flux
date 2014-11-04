@@ -14,8 +14,22 @@ export default angular.module('store', [
     class Store {
       constructor() {
         this.$scope = storeScope.$new();
-        this.store = Immutable.Vector();
+        this.store = Immutable.List();
+        this.history = [];
+        this.future = [];
         console.log('new store', this);
+      }
+
+      undo() {
+        var store = this.store;
+        this.future.unshift(store);
+        this.store = this.history.pop();
+      }
+
+      redo() {
+        var store = this.store;
+        this.history.push(store);
+        this.store = this.future.shift();
       }
 
       on(...args) {

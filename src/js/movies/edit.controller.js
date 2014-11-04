@@ -21,7 +21,6 @@ class EditCtrl {
         name: (val) => {
           if (val) {
             this.movie = this.movie.set('name', val);
-
           }
           return this.movie.get('name');
         }
